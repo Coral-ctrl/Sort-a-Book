@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+<div class="book-detail">
+  <div class="cover">
+    <% if (book.isbn && book.isbn.trim() !== "") { %>
+      <img 
+        class="book-cover"
+        src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" 
+        alt="Cover for <%= book.title %>"
+        onerror="this.onerror=null; this.src='/images/No-Cover-Image.png';" 
+      />
+    <% } else { %>
+    <img class="noCover" src="/images/No-Cover-Image.png" alt="No cover available" />
+  <% } %>
+  </div>
+
+  <div class="info">
+    <h1 class="detail-title"><%= book.title %></h1>
+    <p><strong>Author:</strong> <%= book.author %></p>
+    <p><strong>Illustrator:</strong> <%= book.illustrator %></p>
+    <p><strong>Date Added:</strong> <%= new Date(book.date_added).toDateString() %></p>
+    <p><strong>Categories:</strong> 
+      <% if (book.categories && book.categories.length > 0) { %>
+        <%= book.categories.join(", ") %>
+      <% } else { %>
+        <em>Uncategorised</em>
+      <% } %>
+    </p>
+    <p><strong>Description:</strong></p>
+    <p><%= book.description %></p>
+
+    <div class="book-actions">
+      <a href="/book/<%= book.id %>/edit" class="btn btn-warning">Edit</a>
+
+      <form action="/book/<%= book.id %>/delete" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?');">Delete</button>
+      </form>
+    </div>
+    <a href="/" class="link-secondary">← Back to all books</a>
+  </div>
+
+</div>
+
+<%- include("partials/footer.ejs") %>

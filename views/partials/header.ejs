@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Sort-a-Book</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+
+<body>
+  <main>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+  <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+</svg> Sort-a-Book</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item dropdown sort-item">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</a>
+          <ul class="dropdown-menu dropdown-sortby">
+            <li><a class="dropdown-item" href="/">All</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/?sort=recent<%= typeof category !== 'undefined' ? '&category=' + category : '' %>">Sort by Recency</a></li>
+            <li><a class="dropdown-item" href="/?sort=title<%= typeof category !== 'undefined' ? '&category=' + category : '' %>">Sort by Title (A-Z)</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/?category=Nature<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Nature</a></li>
+            <li><a class="dropdown-item" href="/?category=Relationship<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Relationship</a></li>
+            <li><a class="dropdown-item" href="/?category=Animals<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Animals</a></li>
+            <li><a class="dropdown-item" href="/?category=Emotions<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Emotions</a></li>
+            <li><a class="dropdown-item" href="/?category=STEM<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">STEM</a></li>
+            <li><a class="dropdown-item" href="/?category=Literacy<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Literacy</a></li>
+            <li><a class="dropdown-item" href="/?category=Indigenous<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Indigenous</a></li>
+            <li><a class="dropdown-item" href="/?category=Special-days<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Special Days</a></li>
+            <li><a class="dropdown-item" href="/?category=Transportation<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Transportation</a></li>
+            <li><a class="dropdown-item" href="/?category=Environment<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Environment</a></li>
+            <li><a class="dropdown-item" href="/?category=Diversity<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Diversity</a></li>
+            <li><a class="dropdown-item" href="/?category=Other<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">Other</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" action="/search" method="get">
+        <input class="form-control me-2" type="search" name="q" placeholder="Keyword" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+    <!-- <header>
+      <h1>Sort-a-Book</h1>
+    </header> -->

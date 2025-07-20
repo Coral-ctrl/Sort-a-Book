@@ -1,0 +1,24 @@
+  </main>
+
+  
+  <footer>
+    <p style="text-align: center;">&copy; <%= new Date().getFullYear() %> Sort-a-Book</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".book-cover").forEach(img => {
+        img.addEventListener("load", () => {
+          // Check for very small size (likely a blank or placeholder)
+          if (img.naturalWidth <= 1 || img.naturalHeight <= 1) {
+            img.src = "/images/No-Cover-Image.png";
+          }
+        });
+      });
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

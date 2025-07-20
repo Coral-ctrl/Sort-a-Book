@@ -1,0 +1,175 @@
+<%- include('partials/header.ejs'); -%>
+
+
+  <header>
+    <h1>Sort-a-Book</h1>
+  </header>
+
+  <!-- Add Book Alert -->
+  <% if (typeof added !== 'undefined' && added === '1') { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Book added successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+  <!-- Delete Book Alert -->
+  <% if (typeof deleted !== 'undefined' && deleted === '1') { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Book deleted successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+
+  <!-- Add Book Form -->
+  <form class="add-form" action="/add" method="POST">
+    <input name="title" placeholder="Title" required />
+    <input name="author" placeholder="Author" />
+    <input name="illustrator" placeholder="Illustrator" />
+    <input name="isbn" placeholder="ISBN" />
+    <input name="description" placeholder="Description" />
+    <input name="date_added" type="date" />
+
+    <!-- Book Categories -->
+    <fieldset>
+        <legend>Choose categories:</legend>
+
+        <label>
+            <input type="checkbox" name="categories" value="Nature" />
+            Nature
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Relationship" />
+            Relationship
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Animals" />
+            Animals
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Emotions" />
+            Emotions
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="STEM" />
+            STEM
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Literacy" />
+            Literacy
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Indigenous" />
+            Indigenous
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Special-days" />
+            Special Days
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Transportation" />
+            Transportation
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Environment" />
+            Environment
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Diversity" />
+            Diversity
+        </label><br />
+
+        <label>
+            <input type="checkbox" name="categories" value="Other" />
+            Other
+        </label>
+    </fieldset>
+
+    <button type="submit">Add Book</button>
+  </form>
+
+  <!-- Sort and Filter Links -->
+  <!-- <div class="sort-options">
+    <a href="/">All</a> |
+    <a href="/?sort=recent">Sort by Recency</a> |
+    <a href="/?sort=title">Sort by Title (A–Z)</a>
+    <a href="/?category=Nature">Nature</a> |
+    <a href="/?category=Relationship">Relationship</a> |
+    <a href="/?category=Animals">Animals</a>
+    <a href="/?category=Emotions">Emotions</a> |
+    <a href="/?category=STEM">STEM</a> |
+    <a href="/?category=Literacy">Literacy</a> |
+    <a href="/?category=Indigenous">Indigenous</a> |
+    <a href="/?category=Special-days">Special Days</a> |
+    <a href="/?category=Other">Other</a>
+  </div> -->
+
+  <!-- Book List -->
+  <div class="book-list">
+    <% if (books.length === 0) { %>
+        <p>No books yet. Add one above!</p>
+    <% } else { %>
+        <% books.forEach(book => { %>
+            <div class="book-card">
+                <!-- Book Cover (link to detail page) -->
+                <a href="/book/<%= book.id %>">
+                    <% if (book.isbn && book.isbn.trim() !== "") { %>
+                        <img 
+                        class="book-cover"
+                        src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" 
+                        alt="Cover for <%= book.title %>"
+                        onerror="this.onerror=null; this.src='/images/No-Cover-Image.png';" 
+                        />
+                    <% } else { %>
+                        <img class="noCover" src="/images/No-Cover-Image.png" alt="No cover available" />
+                    <% } %>
+                </a>
+
+                <!-- Book Title (link to detail page) -->
+                <h2>
+                    <a href="/book/<%= book.id %>"><%= book.title %></a>
+                </h2>
+                <p><b>Author:</b> <%= book.author %></p>
+                <p><b>Illustrator:</b> <%= book.illustrator %></p>
+                <!-- <p><small>Date added: <%= new Date(book.date_added).toDateString() %></small></p> -->
+                
+                <p><b>Categories:</b>
+                    <% if (book.categories && book.categories.length > 0) { %>
+                        <%= book.categories.join(", ") %>
+                    <% } else { %>
+                        <em>Uncategorised</em>
+                    <% } %>
+                </p>
+            </div>
+        <% }); %>
+    <% } %>
+  </div>
+
+  
+  <div class="pagination">
+  <% if (currentPage > 1) { %>
+    <a href="/?page=<%= currentPage - 1 %><%= category ? '&category=' + category : '' %><%= sort ? '&sort=' + sort : '' %>">Previous</a>
+  <% } %>
+
+  Page <%= currentPage %> of <%= totalPages %>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="/?page=<%= currentPage + 1 %><%= category ? '&category=' + category : '' %><%= sort ? '&sort=' + sort : '' %>">Next</a>
+  <% } %>
+</div>
+
+
+
+
+<%- include('partials/footer.ejs'); -%>
