@@ -4,7 +4,7 @@ A full-stack web app for tracking, sorting, and reviewing picturebooks you've re
 
 ---
 
-## ✨ Features
+## Features
 
 - 📖 Add new picturebooks with title, author, illustrator, ISBN, description, and categories
 - 🖼️ Display book covers via the [Open Library Covers API](https://openlibrary.org/dev/docs/api/covers)
@@ -16,7 +16,7 @@ A full-stack web app for tracking, sorting, and reviewing picturebooks you've re
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - Node.js
 - Express.js
@@ -27,7 +27,7 @@ A full-stack web app for tracking, sorting, and reviewing picturebooks you've re
 
 ---
 
-## 👥 Who May Use
+## Who May Use
 
 - Children and parents who want to track picturebooks read  
 - Teachers and educators curating classroom or library collections  
@@ -35,6 +35,6 @@ A full-stack web app for tracking, sorting, and reviewing picturebooks you've re
 
 ---
  
-## 🙌 Acknowledgements
+## Acknowledgements
 •	Open Library Covers API for book images
 
