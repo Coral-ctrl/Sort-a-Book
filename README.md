@@ -35,6 +35,6 @@ A full-stack web app for tracking, sorting, and reviewing picturebooks you've re
 
 ---
  
-## Acknowledgements
+## Acknowledgement
 •	Open Library Covers API for book images
 
